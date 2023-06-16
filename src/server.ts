@@ -1,13 +1,19 @@
-import fastify from "fastify"
+import fastify from 'fastify'
+import Cors from '@fastify/cors'
+import { memoriesRoutes } from './routes/memories'
 
 const app = fastify()
 
-app.post('/hello', () => {
-    return 'Hello World'
+app.register(Cors, {
+  origin: 'http://localhost:3333',
 })
 
-app.listen({
+app.register(memoriesRoutes)
+
+app
+  .listen({
     port: 3333,
-}).then(() => {
+  })
+  .then(() => {
     console.log('🐱‍🏍 HTTP server running on http://localhost:3333')
-})
+  })
