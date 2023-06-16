@@ -5,7 +5,7 @@ import { memoriesRoutes } from './routes/memories'
 const app = fastify()
 
 app.register(Cors, {
-  origin: 'http://localhost:3000',
+  origin: 'http://localhost:3333',
 })
 
 app.register(memoriesRoutes)
