@@ -5,6 +5,7 @@ import { prisma } from '../lib/prisma'
 export async function memoriesRoutes(app: FastifyInstance) {
   app.get('/memories', async () => {
     const memories = await prisma.memory.findMany({
+      // Ordenar por ascendente "mais antiga para mais nova"
       orderBy: {
         createdAt: 'asc',
       },
@@ -73,6 +74,7 @@ export async function memoriesRoutes(app: FastifyInstance) {
 
     const memory = await prisma.memory.update({
       where: {
+        id,
       },
       data: {
         content,
